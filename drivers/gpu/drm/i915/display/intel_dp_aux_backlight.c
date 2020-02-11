@@ -334,7 +334,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
 	    (i915_modparams.enable_dpcd_backlight == -1 &&
 	     dev_priv->vbt.backlight.type !=
 		     INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
-	     !drm_dp_has_quirk(&intel_dp->desc,
+	     !drm_dp_has_quirk(&intel_dp->desc, 0,
 			       DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT)))
 		return -ENODEV;
 
