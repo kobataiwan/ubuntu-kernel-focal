@@ -325,9 +325,7 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
 int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
 {
 	struct intel_panel *panel = &intel_connector->panel;
-	struct intel_dp *intel_dp = enc_to_intel_dp(&intel_connector->encoder->base);
-	struct drm_device *dev = intel_connector->base.dev;
-	struct intel_dp *intel_dp = enc_to_intel_dp(intel_connector->encoder);
+	struct intel_dp *intel_dp = enc_to_intel_dp(&intel_connector->encoder);
 	struct drm_device *dev = intel_connector->base.dev;
 	struct drm_i915_private *dev_priv = to_i915(dev);
 
