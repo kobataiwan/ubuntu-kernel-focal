@@ -1322,6 +1322,24 @@ struct edid_quirk {
  * DP quirks in such cases.
  */
 static const struct edid_quirk edid_quirk_list[] = {
+        /* Optional 4K AMOLED panel in the ThinkPad X1 Extreme 2nd Generation
+         * only supports DPCD backlight controls
+         */
+        { MFG(0x4c, 0x83), PROD_ID(0x41, 0x41), BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
+        /*
+         * Some Dell CML 2020 systems have panels support both AUX and PWM
+         * backlight control, and some only support AUX backlight control. All
+         * said panels start up in AUX mode by default, and we don't have any
+         * support for disabling HDR mode on these panels which would be
+         * required to switch to PWM backlight control mode (plus, I'm not
+         * even sure we want PWM backlight controls over DPCD backlight
+         * controls anyway...). Until we have a better way of detecting these,
+         * force DPCD backlight mode on all of them.
+         */
+        { MFG(0x06, 0xaf), PROD_ID(0x9b, 0x32), BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
+        { MFG(0x06, 0xaf), PROD_ID(0xeb, 0x41), BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
+        { MFG(0x4d, 0x10), PROD_ID(0xc7, 0x14), BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
+        { MFG(0x4d, 0x10), PROD_ID(0xe6, 0x14), BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
 };
 
 #undef MFG
